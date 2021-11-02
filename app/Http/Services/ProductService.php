@@ -24,15 +24,26 @@ class ProductService
     public function getSingleProduct(int $id)
     {
         $product = $this->productRepository->findById($id);
-        
-        if(empty($product)) {
+
+        if (empty($product)) {
             return response()->json([
                 'error' => true,
                 'message' => 'Product not found!'
             ], 404);
         }
-            
+
         return new ProductResource($product);
+    }
+
+    public function searchProducts(object $request)
+    {
+        if (!$request->has('query') && empty($request->input('query'))) {
+            return $this->getAllProducts();
+        }
+
+        return ProductResource::collection(
+            $this->productRepository->search($request->input('query'))
+        );
     }
 
     public function createProduct(object $request)

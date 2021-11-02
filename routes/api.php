@@ -30,7 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::apiResource('categories', CategoryController::class)->except('show');
-    Route::apiResource('products', ProductController::class);
-    
     Route::get('products/search', [ProductController::class, 'search']);
+    Route::apiResource('products', ProductController::class);
 });

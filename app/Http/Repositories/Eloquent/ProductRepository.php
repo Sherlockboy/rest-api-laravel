@@ -23,17 +23,26 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $this->product->whereId($id)->with('user', 'category')->first();
     }
-    
+
+    public function search(string $query)
+    {
+        return $this->product->where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->orWhere('price', floatval($query))
+            ->with('user', 'category')
+            ->get();
+    }
+
     public function create(array $data)
     {
         return $this->product->create($data);
     }
-    
+
     public function update(int $id, array $data)
     {
         return $this->product->find($id)->update($data);
     }
-    
+
     public function delete(int $id)
     {
         return $this->product->destroy($id);

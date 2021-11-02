@@ -46,7 +46,7 @@ class ProductController extends Controller
      */
     public function search(Request $request)
     {
-        //
+        return $this->productService->searchProducts($request);
     }
 
     /**
