@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/profile', [AuthController::class, 'profile']);
     });
 
-    Route::apiResource('category', CategoryController::class)->except('show');
+    Route::apiResource('categories', CategoryController::class)->except('show');
+    Route::apiResource('products', ProductController::class);
+    
+    Route::get('products/search', [ProductController::class, 'search']);
 });
