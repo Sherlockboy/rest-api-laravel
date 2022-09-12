@@ -9,4 +9,4 @@ Task description
 6. Search for products by keywords
 7. Removing items
 
-collection of postman requests
+Postman Docs: https://www.postman.com/interstellar-space-24432/workspace/public/collection/12411946-6d355724-8150-467b-8a7a-e7bba19978db?action=share&creator=12411946
